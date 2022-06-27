@@ -1,0 +1,20 @@
+{% include 'receitas/partials/head.html' %}
+<body>
+    {%include 'receitas/partials/header.html'%}
+    {%include 'receitas/partials/search.html'%}
+    <main class="main-content-container">
+        <div class="main-content main-content-list container">
+            {%for receita in receitas %}
+                {%include 'receitas/partials/receita.html'%}
+            {% endfor %}
+            
+        </div>
+    </main>
+    {%include 'receitas/partials/footer.html'%}
+   
+    
+    
+
+</body>
+
+</html>
