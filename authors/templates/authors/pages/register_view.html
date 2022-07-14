@@ -5,9 +5,15 @@
     <main class="main-content-container">
         {% include 'receitas/partials/messages.html' %}
         <div class="main-content main-content-list container">
-            {%for receita in receitas %}
-                {%include 'receitas/partials/receita.html'%}
-            {% endfor %}
+            {% block content %}
+            <div class="main-content center container">
+                <h2>Register</h2>
+                {% include 'receitas/partials/messages.html' %}
+                {%include 'authors/partials/form.html'%}
+                {% endblock content %} 
+            </div>
+
+            
             <div class="center m-y">
                 <h1></h1>
             </div>
@@ -23,3 +29,4 @@
 </body>
 
 </html>
+

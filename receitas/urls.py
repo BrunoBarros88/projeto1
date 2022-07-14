@@ -18,11 +18,14 @@ from django.urls import path
 
 from receitas import views
 
+app_name = 'receitas'
 
 urlpatterns = [
     path('', views.home, name="home"),
-    path('receita/<int:id>', views.receita, name="receitas-receita"),
+    path('receita/<int:id>', views.receita, name="receita"),
     path('receita/category/<int:category_id>', views.category, name="category"),
+    path('receita/search/', views.search, name="search"),
+
 
 
 
