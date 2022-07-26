@@ -1,0 +1,24 @@
+{% include 'receitas/partials/head.html' %}
+<body>
+    {%include 'receitas/partials/header.html'%}
+    {%include 'receitas/partials/search.html'%}
+    {% block title %}{% endblock title %}
+    <main class="main-content-container">
+        {% block content %}
+        <div class="main-content center container">
+          <h2>Dashboard: Criar Receita</h2>
+          {% include 'receitas/partials/messages.html' %}
+          {% include 'authors/partials/login_message.html' %}
+          <div class="left">
+            {%include 'authors/partials/form.html'%}
+          </div>
+        </div>
+    </main>
+    {%include 'receitas/partials/footer.html'%}
+    {%endblock%}
+    
+    
+
+</body>
+
+</html>

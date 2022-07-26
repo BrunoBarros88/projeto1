@@ -1,0 +1,33 @@
+{% include 'receitas/partials/head.html' %}
+<body>
+    {%include 'receitas/partials/header.html'%}
+    {%include 'receitas/partials/search.html'%}
+    <main class="main-content-container">
+        <div class="main-content main-content-list container">
+            {% block content %}
+            <div class="main-content center container">
+                <h2>Login</h2>
+                {% include 'authors/partials/login_message.html' %}
+                {% include 'receitas/partials/messages.html' %}
+                {%include 'authors/partials/form.html'%}
+            {% endblock content %} 
+            </div>
+            
+
+            
+            <div class="center m-y">
+                <h1></h1>
+            </div>
+            {% include 'receitas/partials/pagination.html' %}
+            
+        </div>
+    </main>
+    {%include 'receitas/partials/footer.html'%}
+   
+    
+    
+
+</body>
+
+</html>
+

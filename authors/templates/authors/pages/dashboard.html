@@ -1,0 +1,48 @@
+{% load static %}
+{% include 'receitas/partials/head.html' %}
+<body>
+    {%include 'receitas/partials/header.html'%}
+    {%include 'receitas/partials/search.html'%}
+    {% block title %}{% endblock title %}
+    <main class="main-content-container">
+        {% block content %}
+        <div class="main-content center container">
+          <h2>Dashboard ({{ user }})</h2>
+          {% include 'authors/partials/login_message.html' %}
+          {% include 'receitas/partials/messages.html' %}
+          <div class="authors-dashboard-container">
+            <h3>Your recipes</h3>
+      
+            <ul>
+              {% for receita in receitas %}
+                <li>
+                  <a href="{% url 'authors:dashboard_recipe_edit' receita.id %}">{{ receita.title }}</a>- 
+                  <form 
+                  class="inline-form form-delete" 
+                  action="{% url 'authors:dashboard_recipe_delete' %}" 
+                  method='POST'
+                  >
+                    {% csrf_token %}
+                    <input type="hidden" name="id" value="{{ receita.id }}">
+                    <button class="plaintext-button" type="submit">❌</button>
+                  </form>
+                </li>
+              {% empty %}
+                <li>
+                  <p>You do not have recipes, please create one.</p>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+    </main>
+    {%include 'receitas/partials/footer.html'%}
+    <script src="{% static 'static/js/scripts.js' %}"></script>
+
+    {%endblock%}
+    
+    
+
+</body>
+
+</html>
