@@ -13,11 +13,17 @@
     <div class="receita-author">
         {% if receita.author is not None %}
             <span class="receita-author-item">
+                {% if recipe.author.profile %}
+                <a href="{% url 'authors:profile recipe.author.profile.id' %}">
+                {% endif %}
                 <i class="fas fa-user"></i>
                 {% if receita.author.first_name %}
                     {{ receita.author.first_name }} {{ receita.author.last_name }}
                 {% else %}
                     {{ receita.author.username }}
+                {% endif %}
+                {% if recipe.author.profile %}
+                   </a>
                 {% endif %}
             </span>
         {% endif %}

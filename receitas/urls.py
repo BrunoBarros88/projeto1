@@ -21,10 +21,20 @@ from receitas import views
 app_name = 'receitas'
 
 urlpatterns = [
-    path('', views.home, name="home"),
-    path('receita/<int:id>', views.receita, name="receita"),
-    path('receita/category/<int:category_id>', views.category, name="category"),
-    path('receita/search/', views.search, name="search"),
+    path('', views.RecipeListViewHome.as_view(), name="home"),
+    path('receita/<int:pk>', views.RecipeDetail.as_view(), name="receita"),
+    path('receita/category/<int:category_id>',
+         views.RecipeListViewCategory.as_view(), name="category"),
+    path('receita/search/', views.RecipeListViewSearch.as_view(), name="search"),
+    path(
+        'receitas/api/v1/',
+        views.RecipeListViewHomeApi.as_view(),
+        name="receitas_api_v1",),
+    path(
+        'receitas/api/v1/<int:pk>/',
+        views.RecipeDetailAPI.as_view(),
+        name="receitas_api_v1_detail",
+    ),
 
 
 
