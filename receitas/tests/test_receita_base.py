@@ -1,13 +1,15 @@
 import os
+import tempfile
 
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.core.files.uploadedfile import SimpleUploadedFile
-from django.test import TestCase
+from django.test import TestCase, override_settings
 
 from receitas.models import Category, Receita
 
 
+@override_settings(MEDIA_ROOT=tempfile.gettempdir())
 class ReceitaTestBase(TestCase):
 
     def setUp(self) -> None:
