@@ -1,12 +1,8 @@
 import os
-from typing import List
 
-from django.contrib import messages
-from django.core.paginator import Paginator
 from django.db.models import Q
 from django.forms.models import model_to_dict
 from django.http import Http404, JsonResponse
-from django.shortcuts import get_list_or_404, get_object_or_404, render
 from django.views.generic import DetailView, ListView
 
 from receitas.models import Receita

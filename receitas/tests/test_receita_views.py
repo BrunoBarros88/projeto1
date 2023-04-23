@@ -104,3 +104,32 @@ class ReceitaViewsTest(ReceitaTestBase):
         )
 
         self.assertEqual(response.status_code, 404)
+
+    def test_recipe_search_loads_correct_template(self):
+        response = self.client.get(reverse('receitas:search') + '?q=teste')
+        self.assertTemplateUsed(response, 'receitas/search.html')
+
+    def test_recipe_search_can_find_recipe_by_title(self):
+        title1 = 'This is recipe one'
+        title2 = 'This is recipe two'
+
+        receita1 = self.make_receita(
+            slug='one', title=title1, author_data={'username': 'one'}
+        )
+        receita2 = self.make_receita(
+            slug='two', title=title2, author_data={'username': 'two'}
+        )
+
+        search_url = reverse('receitas:search')
+        response1 = self.client.get(f'{search_url}?q={title1}')
+        response2 = self.client.get(f'{search_url}?q={title2}')
+        response_both = self.client.get(f'{search_url}?q=this')
+
+        self.assertIn(receita1, response1.context['receitas'])
+        self.assertNotIn(receita2, response1.context['receitas'])
+
+        self.assertIn(receita2, response2.context['receitas'])
+        self.assertNotIn(receita1, response2.context['receitas'])
+
+        self.assertIn(receita1, response_both.context['receitas'])
+        self.assertIn(receita2, response_both.context['receitas'])
