@@ -1,11 +1,12 @@
 
-from authors.forms import LoginForm, RegisterForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
 from django.shortcuts import redirect, render
 from django.urls import reverse
+
+from authors.forms import LoginForm, RegisterForm
 from receitas.models import Receita
 
 
@@ -82,4 +83,5 @@ def dashboard(request):
         is_published=False,
         author=request.user
     )
-    return render(request, 'authors/pages/dashboard.html', context={'receitas': receitas, })
+    return render(request, 'authors/pages/dashboard.html',
+                  context={'receitas': receitas, })
