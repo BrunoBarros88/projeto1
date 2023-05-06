@@ -137,9 +137,7 @@ class ReceitaViewsTest(ReceitaTestBase):
         self.assertIn(receita2, response_both.context['receitas'])
 
     def test_recipe_home_is_paginated(self):
-        for i in range(8):
-            kwargs = {'slug': f'r{i}', 'author_data': {'username': f'u{i}'}}
-            self.make_receita(**kwargs)
+        self.make_recipe_in_batch(qtd=8)
 
         with patch('receitas.views.PER_PAGE', new=3):
             response = self.client.get(reverse('receitas:home'))
