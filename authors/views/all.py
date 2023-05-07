@@ -11,7 +11,7 @@ from receitas.models import Receita
 
 
 def register_view(request):
-    register_form_data = request.session.get('register_form_data', None)
+    register_form_data = request.session.get('register_form_data', None)  # noqa=F841
     request.session['number'] = request.session.get('number') or 1
     request.session['number'] += 1
     form = RegisterForm()
@@ -70,9 +70,12 @@ def login_create(request):
 @login_required(login_url='authors:login', redirect_field_name='next')
 def logout_view(request):
     if not request.POST:
+        messages.error(request, 'Invalid logout request')
         return redirect(reverse('authors:login'))
     if request.POST.get('username') != request.user.username:
+        messages.error(request, 'Invalid logout user')
         return redirect(reverse('authors:login'))
+    messages.error(request, 'Invalid logout user')
     logout(request)
     return redirect(reverse('authors:login'))
 
